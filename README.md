@@ -37,6 +37,12 @@ Inside the brp_heur directory, you will find a script run_heur.sh with sample co
 * instance_file : the instance to solve.
 * iterations : the number of iterations to use in ALNS. The instances from Dell'Amico et al (2014), have very few customers so ALNS can run very fast with with them. For example, 500k or more iterations should take less than 2 minutes in a reasonable CPU.
 
+Example: 
+
+```bash
+build/exec_heur instance_file=instances_dhin/Bari30.txt iterations=750000
+```
+
 ## Ouput
 
 Upon calling the examples in run_heur.sh, you should see the following output.
