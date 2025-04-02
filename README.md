@@ -47,4 +47,4 @@ build/exec_heur instance_file=instances_dhin/Bari30.txt iterations=750000
 
 Upon calling the examples in run_heur.sh, you should see the following output:
 
-[brp_output](https://github.com/lucasparada20/brp_heur/blob/main/images/brp_output.jpg)
+![brp_output](https://github.com/lucasparada20/brp_heur/blob/main/images/brp_output.jpg)
