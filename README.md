@@ -6,8 +6,8 @@ An implementation of the ALNS metaheuristic for the bicycle repositioning proble
 1. Clone the repository and add executable permission to a script that will call CMake for you:
 
 ```shell
-git clone https://github.com/lucasparada20/sbrp_heur.git
-cd sbrp_heur
+git clone https://github.com/lucasparada20/brp_heur.git
+cd brp_heur
 chmod u+x cmake_script_heur.sh
 ```
 2. Build the code by typing:
