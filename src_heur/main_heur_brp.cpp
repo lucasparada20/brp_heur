@@ -6,6 +6,7 @@
 #include "AlnsBRP.h"
 #include <fstream>
 #include <iomanip>
+#include "RouteFeasibility.h" // For testing ...
 
 int main(int argc, char ** argv)
 {
@@ -18,12 +19,67 @@ int main(int argc, char ** argv)
 	Prob pr;
 	LoadBRP load;
 	
-	load.Load_brp_instance(pr,Parameters::GetInstanceFileName());
+	load.Load_brp_instance(pr,Parameters::GetInstanceFileName());	
 	
 	CostFunctionBRP cost_func;
 	
 	Sol sol(&pr,&cost_func);
 	sol.PutAllNodesToUnassigned();
+
+	//Testing the optimal sol in ReggioEmilia10 and ReggioEmilia20
+	/*std::vector<Node*> r0;
+	r0.push_back(pr.GetCustomer(1)); r0.push_back(pr.GetCustomer(5)); r0.push_back(pr.GetCustomer(12)); r0.push_back(pr.GetCustomer(4)); r0.push_back(pr.GetCustomer(7)); r0.push_back(pr.GetCustomer(6));
+	r0.insert(r0.begin(), pr.GetNode( pr.GetCustomerCount() ));
+	r0.push_back( pr.GetNode( pr.GetCustomerCount()+1 ) );
+	
+	std::vector<Node*> r1;
+	r1.push_back(pr.GetCustomer(0)); r1.push_back(pr.GetCustomer(2)); r1.push_back(pr.GetCustomer(9)); r1.push_back(pr.GetCustomer(3)); r1.push_back(pr.GetCustomer(8)); r1.push_back(pr.GetCustomer(10));
+	r1.insert(r1.begin(), pr.GetNode( pr.GetCustomerCount() ));
+	r1.push_back( pr.GetNode( pr.GetCustomerCount()+1 ) );
+	
+	std::vector<Node*> r2;
+	r2.push_back(pr.GetCustomer(11));
+	r2.insert(r2.begin(), pr.GetNode( pr.GetCustomerCount() ));
+	r2.push_back( pr.GetNode( pr.GetCustomerCount()+1 ) );
+	
+	std::vector<Node*> r3;
+	r3.push_back(pr.GetCustomer(12)); r3.push_back(pr.GetCustomer(1)); r3.push_back(pr.GetCustomer(9)); r3.push_back(pr.GetCustomer(3)); r3.push_back(pr.GetCustomer(5)); r3.push_back(pr.GetCustomer(2)); r3.push_back(pr.GetCustomer(0)); r3.push_back(pr.GetCustomer(4)); r3.push_back(pr.GetCustomer(7)); r3.push_back(pr.GetCustomer(6));
+	r3.insert(r3.begin(), pr.GetNode( pr.GetCustomerCount() ));
+	r3.push_back( pr.GetNode( pr.GetCustomerCount()+1 ) );
+	
+	std::vector<Node*> r4;
+	r4.push_back(pr.GetCustomer(8)); r4.push_back(pr.GetCustomer(10)); r4.push_back(pr.GetCustomer(11));
+	r4.insert(r4.begin(), pr.GetNode( pr.GetCustomerCount() ));
+	r4.push_back( pr.GetNode( pr.GetCustomerCount()+1 ) );
+	
+	Sol solReggio10(&pr,&cost_func);
+	solReggio10.PutAllNodesToUnassigned();
+	
+	Sol solReggio20(&pr,&cost_func);
+	solReggio20.PutAllNodesToUnassigned();
+
+	solReggio10.MakePath(0,r0);
+	solReggio10.MakePath(1,r1);
+	solReggio10.MakePath(2,r2);
+	
+	solReggio20.MakePath(0,r3);
+	solReggio20.MakePath(1,r4);
+	
+	printf("Reggio10 optimal solution:\n");
+	cost_func.Update(solReggio10);
+	solReggio10.Show();
+	
+	printf("Reggio20 optimal solution:\n");
+	cost_func.Update(solReggio20);
+	solReggio20.Show();
+	
+	printf("r0 feas?%d drvCount:%d\n",RouteFeasibility::IsFeasible(&pr,r0),RouteFeasibility::GetDriverCount(&pr,r0));
+	printf("r1 feas?%d drvCount:%d\n",RouteFeasibility::IsFeasible(&pr,r1),RouteFeasibility::GetDriverCount(&pr,r1));
+	printf("r2 feas?%d drvCount:%d\n",RouteFeasibility::IsFeasible(&pr,r2),RouteFeasibility::GetDriverCount(&pr,r2));
+	printf("r3 feas?%d drvCount:%d\n",RouteFeasibility::IsFeasible(&pr,r3),RouteFeasibility::GetDriverCount(&pr,r3));
+	printf("r4 feas?%d drvCount:%d\n",RouteFeasibility::IsFeasible(&pr,r4),RouteFeasibility::GetDriverCount(&pr,r4));
+	
+	exit(1);*/
 	
 	InsRmvMethodBRP method(pr);
 	SequentialInsertionBRP seq(method);

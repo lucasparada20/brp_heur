@@ -39,14 +39,14 @@ int RouteFeasibility::GetDriverCount(Prob* prob, std::vector<Node*>& stations)
 		Node * n = stations[l];
 		
 		//n->Show();
-		dmd += n->demand;
+		dmd = n->demand;
 
 		if(dmd > 0) { lb_left += dmd; ub_left += dmd; }
 
 		if(dmd < 0) { lb_right -= dmd; ub_right -= dmd; }
 	}
 
-	while(ub_left+Q < lb_right || lb_left > ub_right+Q)
+	while(ub_left+Q*nb_drivers < lb_right || lb_left > ub_right+Q*nb_drivers)
 	{
 		Q += prob->GetDriver(0)->capacity;
 		nb_drivers++;

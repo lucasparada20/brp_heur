@@ -69,9 +69,10 @@ void LoadBRP::Load_brp_instance(Prob & pr, const char * filename)
 		n.type = NODE_TYPE_CUSTOMER;
 		
 		pr.AddNode(n);
+		n.Show();
 	}
-	printf("Sample node:\n");
-	pr.GetNode(0)->Show();
+	//printf("Sample node:\n");
+	//pr.GetNode(0)->Show();
 	
 	//OG
 	for(int i = 0; i< stations-1; i++)	
@@ -105,21 +106,39 @@ void LoadBRP::Load_brp_instance(Prob & pr, const char * filename)
 	int dim = stations;
 	double ** d = new double*[dim];
 	
-	//printf("Distance Matrix:\n");
-	for(int i=0;i<dim;i++)
+	printf("Distance Matrix:\n");
+	double min_val = 1e9;
+	double max_val = -1e9;
+	double sum = 0.0;
+	int count = 0;
+
+	for(int i = 0; i < dim; i++)
 	{
-		Node * n1 = pr.GetNode(i);
+		Node* n1 = pr.GetNode(i);
 		d[n1->distID] = new double[dim];
-		for(int j=0;j<dim;j++)
+		
+		for(int j = 0; j < dim; j++)
 		{
-			Node * n2 = pr.GetNode(j);
-			d[n1->distID][n2->distID] = (i == j) ? 0.0 : distance_matrix[n1->distID][n2->distID];
-			//printf("%.1lf ",d[n1->distID][n2->distID]);
+			Node* n2 = pr.GetNode(j);
+			double val = (i == j) ? 0.0 : distance_matrix[n1->distID][n2->distID]; // original logic
+			d[n1->distID][n2->distID] = val;
+
+			if (i != j) 
+			{
+				if (val < min_val) min_val = val;
+				if (val > max_val) max_val = val;
+				sum += val;
+				count++;
+			}
+
+			printf("%.1lf ", val);
 		}
-		//printf("\n");
-		//getchar();
+		printf("\n");
 	}
-	//exit(1);
+
+	double avg_val = (count > 0) ? sum / count : 0.0;
+
+	printf("Min: %.2lf, Avg: %.2lf, Max: %.2lf\n", min_val, avg_val, max_val); //getchar();
 	pr.SetMatrices(d,dim);
 	
 	Node * depot = pr.GetNode( stations );
