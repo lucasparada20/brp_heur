@@ -99,7 +99,7 @@ int main(int argc, char ** argv)
 	
 	//Optimize
 	alns.SetTemperatureIterInit(0);
-	alns.SetTemperature(0.95);
+	alns.SetTemperature(0.9995);
 	alns.SetIterationCount( Parameters::GetIterations() );
 	alns.SetAcceptationGap( 1.1 );
 	
