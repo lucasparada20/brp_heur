@@ -57,6 +57,12 @@ In the directory `instances_slr`, you will find the instances of the [Technical 
 ./cmake_script_heur_slr.sh
 ```
 
+Alternatively, inside the directory 'src_heur_slr' you will also find a `Makefile` that can build the code by typing:
+
+```bash
+make
+```
+
 To call the executable for these instances, the script `run_heur_dhin.sh` contains all the shell commands you need. Lastly, this code will store results and output files in a `results` directory. So, be sure to create it inside the `brp_heur` directory first.
 
 
