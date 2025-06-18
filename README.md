@@ -52,7 +52,7 @@ chmod u+x cmake_script_heur_slr.sh
 ./cmake_script_heur_slr.sh
 ```
 
-Alternatively, inside the directory 'src_heur_slr', you will also find a `Makefile` that can build the code by typing:
+Alternatively, inside the directory `src_heur_slr`, you will also find a `Makefile` that can build the code by typing:
 
 ```bash
 make
