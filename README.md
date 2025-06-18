@@ -43,12 +43,6 @@ Example:
 build/exec_heur instance_file=instances_dhin/Bari30.txt iterations=750000
 ```
 
-## Ouput
-
-Upon calling the examples in run_heur_dhin.sh, you should see the following output:
-
-![brp_output](https://github.com/lucasparada20/brp_heur/blob/main/images/brp_output.jpg)
-
 ## SLR Instances
 
 In the directory `instances_slr`, you will find the instances of the [Technical Report](https://www.cirrelt.ca/documentstravail/cirrelt-2025-02.pdf). These instances require building the code with the script `cmake_script_heur_slr.sh` by typing:
