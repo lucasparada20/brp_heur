@@ -32,7 +32,7 @@ To test the code you can use the instances from this [article](https://www.scien
 
 ## Running the code
 
-Inside the brp_heur directory, you will find a script run_heur_dhin.sh with sample command line calls. The format is:
+Inside the brp_heur directory, you will find a script `run_heur_dhin.sh` with sample command line calls. The format is:
 
 * instance_file : the instance to solve.
 * iterations : the number of iterations to use in ALNS. The instances from Dell'Amico et al (2014), have very few stations so ALNS can run very fast with them. For example, 500k or more iterations should take less than 2 minutes in a reasonable CPU.
