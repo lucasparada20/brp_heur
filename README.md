@@ -40,7 +40,7 @@ Inside the brp_heur directory, you will find a script `run_heur_dhin.sh` with sa
 Example: 
 
 ```bash
-build/exec_heur instance_file=instances_dhin/Bari30.txt iterations=750000
+build/exec_heur instance_file=instances_dhin/Bari30.txt iterations=250000
 ```
 
 ## SLR Instances
