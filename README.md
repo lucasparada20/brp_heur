@@ -54,15 +54,16 @@ Upon calling the examples in run_heur_dhin.sh, you should see the following outp
 In the directory `instances_slr`, you will find the instances of the [Technical Report](https://www.cirrelt.ca/documentstravail/cirrelt-2025-02.pdf). These instances require building the code with the script `cmake_script_heur_slr.sh` by typing:
 
 ```bash
+chmod u+x cmake_script_heur_slr.sh
 ./cmake_script_heur_slr.sh
 ```
 
-Alternatively, inside the directory 'src_heur_slr' you will also find a `Makefile` that can build the code by typing:
+Alternatively, inside the directory 'src_heur_slr', you will also find a `Makefile` that can build the code by typing:
 
 ```bash
 make
 ```
 
-To call the executable for these instances, the script `run_heur_dhin.sh` contains all the shell commands you need. Lastly, this code will store results and output files in a `results` directory. So, be sure to create it inside the `brp_heur` directory first.
+To call the executable for these instances, the script `run_heur_slr.sh` contains all the shell commands you need. Lastly, this code will store results and output files in a directory named `results`. So, be sure to create it inside the `brp_heur` directory first.
 
 
