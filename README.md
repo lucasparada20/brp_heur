@@ -1,5 +1,5 @@
 # brp_heur
-An implementation of the ALNS metaheuristic for the bicycle repositioning problem. This is the algorithm that provided an upper bound to the rebalancing problem in [Technical Report](https://www.cirrelt.ca/documentstravail/cirrelt-2025-02.pdf)
+An implementation of the ALNS metaheuristic for the bicycle repositioning problem. This is the algorithm that provided an upper bound to the rebalancing problem in [Technical Report](https://www.cirrelt.ca/documentstravail/cirrelt-2025-02.pdf).
 
 ## Building the code in Linux
 
@@ -14,10 +14,6 @@ chmod u+x cmake_script_heur_dhin.sh
 
 ```bash
 ./cmake_script_heur_dhin.sh
-```
-or
-```bash
-./cmake_script_heur_slr.sh
 ```
 
 if you want to debug or use valgrind, just type:
@@ -36,7 +32,7 @@ To test the code you can use the instances from this [article](https://www.scien
 
 ## Running the code
 
-Inside the brp_heur directory, you will find a script run_heur.sh with sample command line calls. The format is:
+Inside the brp_heur directory, you will find a script run_heur_dhin.sh with sample command line calls. The format is:
 
 * instance_file : the instance to solve.
 * iterations : the number of iterations to use in ALNS. The instances from Dell'Amico et al (2014), have very few stations so ALNS can run very fast with them. For example, 500k or more iterations should take less than 2 minutes in a reasonable CPU.
@@ -49,8 +45,18 @@ build/exec_heur instance_file=instances_dhin/Bari30.txt iterations=750000
 
 ## Ouput
 
-Upon calling the examples in run_heur.sh, you should see the following output:
+Upon calling the examples in run_heur_dhin.sh, you should see the following output:
 
 ![brp_output](https://github.com/lucasparada20/brp_heur/blob/main/images/brp_output.jpg)
+
+## SLR Instances
+
+In the directory `instances_slr`, you will find the instances of the [Technical Report](https://www.cirrelt.ca/documentstravail/cirrelt-2025-02.pdf). These instances require building the code with the script `cmake_script_heur_slr.sh` by typing:
+
+```bash
+./cmake_script_heur_slr.sh
+```
+
+To call the executable for these instances, the script `run_heur_dhin.sh` contains all the shell commands you need. Lastly, this code will store results and output files in a `results` directory. So, be sure to create it inside the `brp_heur` directory first.
 
 
