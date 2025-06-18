@@ -28,7 +28,7 @@ cmake \
 	-DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
     -DCMAKE_CXX_FLAGS="${CXX_FLAGS}" \
     -DCMAKE_C_FLAGS="${C_FLAGS}" \
-    ../src_heur
+    ../src_heur_dhin
 
 # Build using all available cores
 make -j$(nproc)
