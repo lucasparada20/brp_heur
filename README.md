@@ -8,22 +8,26 @@ An implementation of the ALNS metaheuristic for the bicycle repositioning proble
 ```shell
 git clone https://github.com/lucasparada20/brp_heur.git
 cd brp_heur
-chmod u+x cmake_script_heur.sh
+chmod u+x cmake_script_heur_dhin.sh
 ```
 2. Build the code by typing:
 
 ```bash
-./cmake_script_heur.sh
+./cmake_script_heur_dhin.sh
+```
+or
+```bash
+./cmake_script_heur_slr.sh
 ```
 
 if you want to debug or use valgrind, just type:
 
 ```bash
-./cmake_script_heur.sh debug
+./cmake_script_heur_dhin.sh debug
 ```
 
 ```bash
-./cmake_script_heur.sh valgrind
+./cmake_script_heur_dhin.sh valgrind
 ```
 
 ## Instances
@@ -48,3 +52,5 @@ build/exec_heur instance_file=instances_dhin/Bari30.txt iterations=750000
 Upon calling the examples in run_heur.sh, you should see the following output:
 
 ![brp_output](https://github.com/lucasparada20/brp_heur/blob/main/images/brp_output.jpg)
+
+
