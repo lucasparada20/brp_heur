@@ -55,9 +55,15 @@ chmod u+x cmake_script_heur_slr.sh
 Alternatively, inside the directory `src_heur_slr`, you will also find a `Makefile` that can build the code by typing:
 
 ```bash
-make
+(cd src_heur_slr && make) # Assuming you are in the brp_heur directory
 ```
 
-To call the executable for these instances, the script `run_heur_slr.sh` contains all the shell commands you need. Lastly, this code will store results and output files in a directory named `results`. So, be sure to create it inside the `brp_heur` directory first.
+To call the executable for these instances, the script `run_heur_slr.sh` contains all the shell commands you need, for example:
+
+```bash
+build/exec_heur instance_file=instances_slr/boston424.txt targets_file_name=instances_slr/targets/targets_boston.txt initial_capacities_file_name=instances_slr/status/boston_station_status.json
+```
+
+Lastly, this code will store results and output files in a directory named `results`. So, be sure to create it inside the `brp_heur` directory first.
 
 
