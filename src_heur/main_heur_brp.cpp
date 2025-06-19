@@ -104,9 +104,15 @@ int main(int argc, char ** argv)
 	alns.SetAcceptationGap( 1.1 );
 	
 	clock_t start_time = clock();
-	
-	
-	alns.Optimize(sol);
+	for(int i=0;i<10;i++)
+	{
+		Sol s = sol;
+		seq.Insert(s);
+		alns.Optimize(sol);
+
+		if(sol.GetCost() > s.GetCost())
+			sol = s;
+	}
 	//BestSolutionList best_sol_list(&pr,100);
 	//alns.Optimize(sol,&best_sol_list);
 	//for(int k=0;k<best_sol_list.GetSolutionCount();k++)
