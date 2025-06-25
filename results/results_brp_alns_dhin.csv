@@ -1,4 +1,4 @@
-﻿City,Q,Ub Alns,Drv,Time Alns,Ub DHIN,Lb DHIN,Gap: Alns-Exact,Gap: Alns-Lb,ExactOpt,AlnsOpt,,,Heur-Exact Gap,Heur-Lb Gap,Time,HeurOpt
+﻿City,Q,Ub Alns,Drv,Time Alns,Ub DHIN,Lb DHIN,Gap: Alns-Exact,Gap: Alns-Lb,ExactOpt,AlnsOpt,,,Gap Alns-Exact,Gap Alns-Lb Gap,Time,AlnsOpt
 Bari,10,20600,2,0.55,20600,20600,0.0%,0.0%,1,1,,Average,1.3%,4.0%,6.7,42
 Bari,20,15700,1,0.56,15700,15700,0.0%,0.0%,1,1,,,,,,
 Bari,30,14600,1,0.53,14600,14600,0.0%,0.0%,1,1,,,,,,
