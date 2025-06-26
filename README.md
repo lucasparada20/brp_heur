@@ -1,6 +1,8 @@
 # brp_heur
 An implementation of the ALNS metaheuristic for the bicycle repositioning problem. This is the algorithm that provided an upper bound to the rebalancing problem in [Technical Report](https://www.cirrelt.ca/documentstravail/cirrelt-2025-02.pdf).
 
+If you are interested in the generalization of the brp, namely the bicycle repositioning problem with stochastic demands (sbrp), then the code and results can be found in this [repo](https://github.com/lucasparada20/sbrp_heur)
+
 ## Building the code in Linux
 
 1. Clone the repository and add executable permission to a script that will call CMake for you:
