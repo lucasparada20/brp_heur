@@ -48,9 +48,20 @@ int main(int arg, char ** argv)
 	std::string file_name_HR_str = "results/re_HR_" + std::to_string(Parameters::GetDelta()) + "_" + city_name + ".txt";
 	std::string output_file_name_str = "results/out_heur_" + std::to_string(Parameters::GetDelta()) + "_" + city_name + ".txt";
 	
-	load.Load_coord(pr, Parameters::GetInstanceFileName());
-	load.Load_targets(pr, Parameters::GetTargetsFileName());
-	load.Load_json_station_status(pr, Parameters::GetInitialCapacitiesFileName());
+	if(arg == 4) // Slr instances
+	{
+		load.Load_coord(pr, Parameters::GetInstanceFileName());
+		load.Load_targets(pr, Parameters::GetTargetsFileName());
+		load.Load_json_station_status(pr, Parameters::GetInitialCapacitiesFileName());
+	} else if(arg == 2) // Ebrp instances
+	{
+		load.LoadInstanceEBRP(pr, Parameters::GetInstanceFileName());
+	}		
+	else
+	{
+		printf("Phil Collins (1989). Didn't Load anything ... exiting."); exit(1);
+	}
+
   
 	int max_abs_dmd = 0; int max_station_cap = 0;
 	for(int i=0;i<pr.GetCustomerCount();i++)
