@@ -394,9 +394,8 @@ void Load::LoadInstanceEBRP(Prob & pr, char * filename)
         exit(1);
     }
 	std::cout << "Load EBRP ===> Loading filename:" << filename << std::endl;
-	
-	//Assumption for maximum route duration : 100 km in SLR
-	Parameters::SetMaxRouteDistance(100.0);
+	Parameters::SetCityName(filename);
+	printf("MaxRouteDistance in Load:%d\n",Parameters::MaxRouteDistance());
 	
     // Read the meta data
 	std::string line;
@@ -417,7 +416,13 @@ void Load::LoadInstanceEBRP(Prob & pr, char * filename)
 			  << " sumCap:" << sumCap << " sumInitReg:" << sumInitReg 
 			  << " sumInitElec:" << sumInitElec << " sumInitU:" << sumInitU << " sumqReg:" << sumqReg
 			  << " sumqElec:" << sumqElec << " sumAbsReg:" << sumAbsReg << " sumAbsElec:" << sumAbsElec << std::endl;
+			  
+	Parameters::SetBSSType((char*)bss_type.c_str());
 	
+	printf("Bss type from load: %s MaxDist: %.1lf city_name: %s\n",
+		Parameters::GetBSSType() == 1? "CS" : "SW",
+		(double)Parameters::MaxRouteDistance(),
+		Parameters::GetCityName());			  
 	
 	std::vector<Node> nodes;
 	nodes.reserve(stations+1);
@@ -481,6 +486,9 @@ void Load::LoadInstanceEBRP(Prob & pr, char * filename)
 		n.target = tgtRegular + tgtElectric;
 		n.initialcapacity = initRegular + initElectric + uElectric;
 		
+		n.UpdateDemand();
+		n.UpdateW();
+		//n.Show();
 		nodes.push_back(n);
 	}
 	
@@ -502,8 +510,8 @@ void Load::LoadInstanceEBRP(Prob & pr, char * filename)
 		//pr.GetCustomer(i)->Show();
 	
 	//Add the depots : two for each customer (Not in the original Slr code ...)
-	//for(int i = 0 ; i < std::min(stations-1,50); i++)
-	for(int i = 0 ; i < stations-1; i++)
+	for(int i = 0 ; i < std::min(stations-1,50); i++)
+	//for(int i = 0 ; i < stations-1; i++)
 	{
 		Node dep1;
 		dep1.id = stations - 1 + i*2;
@@ -554,7 +562,7 @@ void Load::LoadInstanceEBRP(Prob & pr, char * filename)
 		 d[n1->distID][n2->distID] = i==j ? 0 : CalculateHarvesineDistance(n1,n2);		
 		//printf("distID:%d distID:%d = %d\n",n1->distID,n2->distID,(int)d[n1->distID][n2->distID]);
 		//all_distances.push_back(d[n1->distID][n2->distID]); // Store the distance in the vector
-		if(d[n1->distID][n2->distID] > 100.0) // An intercity distance of >100km should be wrong!
+		if(d[n1->distID][n2->distID] > 100) // An intercity distance of >100km should be wrong!
 		{
 			printf("distance:%.3lf Nodes:\n",d[n1->distID][n2->distID]); n1->Show(); n2->Show(); getchar();
 		}

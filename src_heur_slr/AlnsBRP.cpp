@@ -60,8 +60,20 @@ void ALNS::Optimize(Sol & s, BestSolutionList * best_sol_list)
 		}
 
 		if(_recourse_policy == 1 && (iter % 1000) == 0 || _recourse_policy == 2 && iter % 50 == 0)// || best_cost > newcost)
-		printf("Iter:%d rmv:%d newcost:%.2lf(%d,%d) cost:%.2lf best:%.2lf bestDrv:%d T:%.8lf time:%.1lf\n",
+		{
+			printf("Iter:%d rmv:%d newcost:%.2lf(%d,%d) cost:%.2lf best:%.2lf bestDrv:%d T:%.8lf time:%.1lf\n",
 				iter,nbremove,newcost,cur.GetUnassignedCount(),(int)cur.IsFeasible(),curr_cost, best_cost, best.GetUsedDriverCount(), T, elapsed_time);
+			for(int i=0;i<s.GetUnassignedCount();i++)
+			{
+				Prob * prob = s.GetProb();
+				s.GetUnassigned(i)->Show();
+				double dist1 = prob->GetDist(s.GetUnassigned(i),prob->GetNode( prob->GetNodeCount()-1 ));
+				double dist2 = prob->GetDist(prob->GetNode( prob->GetNodeCount()-1 ),s.GetUnassigned(i));
+				printf("dist fromDepot:%.1lf toDepot:%.1lf\n,",dist2,dist1);
+			}
+				
+		}
+		
 
 		if(best_sol_list != NULL && cur.IsFeasible())
 			best_sol_list->Add(cur);

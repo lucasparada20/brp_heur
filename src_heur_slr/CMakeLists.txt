@@ -6,8 +6,10 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Source files
+#main_heur_brp.cpp
+#main_heur_ebrp.cpp
 set(SOURCES
-	main_heur_brp.cpp
+	main_heur_ebrp.cpp
 	AlnsBRP.cpp
 	BestSolutionList.cpp
 	Parameters.cpp

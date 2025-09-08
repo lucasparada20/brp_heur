@@ -20,6 +20,7 @@ class Load
 		void Load_coord(Prob & pr, char * filename);
 		void Load_json_station_status(Prob & pr, char * filename);
 		void Load_targets(Prob & pr, char * filename);
+		void LoadInstanceEBRP(Prob & pr, char * filename);
 		
 		std::map<std::string,int> bss_id_map;
 };

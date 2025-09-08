@@ -48,6 +48,9 @@ int main(int arg, char ** argv)
 	std::string file_name_HR_str = "results/re_HR_" + std::to_string(Parameters::GetDelta()) + "_" + city_name + ".txt";
 	std::string output_file_name_str = "results/out_heur_" + std::to_string(Parameters::GetDelta()) + "_" + city_name + ".txt";
 	
+	std::cout << "HC file name: " << file_name_HC_str << "\n"
+			  << "HR file name: " << file_name_HR_str << std::endl;
+			  
 	if(arg == 4) // Slr instances
 	{
 		load.Load_coord(pr, Parameters::GetInstanceFileName());
@@ -180,14 +183,8 @@ int main(int arg, char ** argv)
 	double elapsed_time = (double)(clock() - begin) / CLOCKS_PER_SEC;
 	printf("HC UB Heur:%.3lf dist:%.3lf rec:%.3lf drv:%d time:%.3lf\n", heur_ub, heur_ub_distance, heur_ub_recourse,heur_nb_drivers, elapsed_time);
 	
-	std::ofstream file_name_HC(file_name_HC_str);	
-	if(!file_name_HC.is_open())
-	{
-		printf("Could not open re file:%s\n",file_name_HC_str.c_str()); 
-		exit(1);
-		
-	}
-
+	std::ofstream file_name_HC(file_name_HC_str);
+	
 	file_name_HC << Parameters::GetDelta() << ";" << pr.GetDriver(0)->capacity << ";" << pr.GetCustomerCount() << ";" << heur_ub << ";" << heur_ub_distance << ";" << heur_ub_recourse << ";" << heur_nb_drivers << ";";
 	file_name_HC << std::fixed << std::setprecision(2) << elapsed_time << ";";
 	printf("HC re file written to:%s\n",file_name_HC_str.c_str());

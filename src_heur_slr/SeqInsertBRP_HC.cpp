@@ -85,6 +85,20 @@ void SeqInsertBRP_HC::FillMoveVec_HC(Sol & s, Node * n, Driver * d, std::vector<
 		
 		prev = next; pos++;
 	}
+	
+	if(moveVec.empty())
+	{
+		Move mo;
+		mo.DeltaDistance = INF_ROUTE_COST;
+		mo.DeltaRec = INF_ROUTE_COST;  
+		mo.DeltaCost = INF_ROUTE_COST;
+		mo.IsFeasible = false;
+		mo.n = n;
+		mo.to = d;
+		mo.pos = 0;
+		mo.move.prev = s.GetNode(d->StartNodeID);
+		moveVec.push_back(mo);
+	}
 }
 
 void SeqInsertBRP_HC::Insert(Sol & s, bool show)
@@ -143,7 +157,6 @@ void SeqInsertBRP_HC::Insert(Sol & s, bool show)
 		std::sort(moveVec.begin(), moveVec.end());
 		int bestRec = 9999;
 		Move best;
-		best.IsFeasible = true;
 		best.DeltaCost = INFINITE;
 		
 		//Find the best delta Recourse of the moves
@@ -213,6 +226,8 @@ void SeqInsertBRP_HC::Insert(Sol & s, bool show)
 		
 		if(best.IsFeasible)
 		{
+			//printf("MoveVec size:%zu\n",moveVec.size());
+			//best.Show();
 			_insrmv.ApplyInsertMove(s, best);
 			s.Update(best.to);
 		}
@@ -222,9 +237,20 @@ void SeqInsertBRP_HC::Insert(Sol & s, bool show)
 			s.RemoveFromUnassigneds(n);
 		}
 		
+		//printf("refused:");
+		//printf("\n");
+			
+		
 		/*printf("Best move:\n");
 		best.Show(); 
 		printf("NodeInserted:%d Cost:%.2lf Unassigneds:%d\n",n->no,s.GetCost(),s.GetUnassignedCount());
 		getchar();*/
 	}
+	for(size_t i = 0 ; i < refused.size() ; i++)
+	{
+		//printf(" %d",n->id);
+		//Prob * pr = s.GetProb();
+		//printf("NodeCount():%d Unassigneds:%d nId:%d\n",pr->GetNodeCount(),s.GetUnassignedCount(),n->id);
+		s.AddToUnassigneds( refused[i] );
+	} 	
 }
